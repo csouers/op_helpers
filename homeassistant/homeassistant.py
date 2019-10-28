@@ -53,6 +53,7 @@ class Data:
     # TODO: refactor the try/excepts to gracefully fail
 
     """Read the data from the zmq sockets."""
+    # the gpsLocation packet is only sent when we're onroad, so don't wait for it
     try:
       location_sock = messaging.recv_sock(self.location)
       if location_sock is not None:
@@ -63,7 +64,7 @@ class Data:
     except:
       print("Location sock failed")
 
-    # the health packet is only sent every so often
+    # the health packet is only sent every so often, so don't wait for it
     try:
       health_sock = messaging.recv_sock(self.health)
       if health_sock is not None:
@@ -71,7 +72,7 @@ class Data:
     except:
       print("Health sock failed")
 
-    # TODO: do we actually need to wait?
+    # we can afford to wait for this packet, because it's sent regularly at all times
     try:
       thermal_sock = messaging.recv_sock(self.thermal, wait=True)
       if thermal_sock is not None:
