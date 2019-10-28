@@ -30,8 +30,8 @@ class Data:
     self.last_send = 0
 
     if self.fast_mode:
-      self.time_to_read = 0.1
-      self.time_to_send = 1
+      self.time_to_read = 5
+      self.time_to_send = 6
     else:
       self.time_to_read = 59
       self.time_to_send = 60
