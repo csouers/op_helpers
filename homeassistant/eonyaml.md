@@ -1,0 +1,1 @@
+My home assistant configuration has the sensors: broken out into its own folder (include sensor: !include_dir_list sensors in your configuration.yaml). If you also do so, copy paste the eon.yaml file there, change the entity that you're sending from your eon, then it should work.
