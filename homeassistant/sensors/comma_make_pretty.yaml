@@ -1,0 +1,39 @@
+platform: template
+sensors:
+  eon_bat_temp:
+    friendly_name: EON Battery Temperature
+    value_template: '{{ (states.sensor.eon_thermal.attributes["result"]["thermal"]["bat"] / 1000) | round(1) }}'
+    unit_of_measurement: "celcius"
+  eon_soc:
+    friendly_name: EON Battery SoC
+    value_template: '{{ states.sensor.eon_thermal.attributes["result"]["thermal"]["batteryPercent"] }}'
+    unit_of_measurement: "percent"
+  eon_car_started:
+    friendly_name: Car Started
+    value_template: '{{ states.sensor.eon_thermal.attributes["result"]["thermal"]["started"] }}'
+  eon_usb_online:
+    friendly_name: EON USB Connected
+    value_template: '{{ states.sensor.eon_thermal.attributes["result"]["thermal"]["usbOnline"] }}'
+  eon_disk_free:
+    friendly_name: EON Free Disk Space
+    value_template: '{{ states.sensor.eon_thermal.attributes["result"]["thermal"]["freeSpace"] | round(2) | float * 100  }}'
+  eon_car_volt:
+    friendly_name: Car Battery Voltage
+    value_template: '{{ (states.sensor.eon_health.attributes["result"]["health"]["voltage"] / 1000) | round(1) }}'
+    unit_of_measurement: "volts"
+  # eon_gps_source:
+  #   friendly_name: "EON GPS Source"
+  #   value_template: "{{ state_attr('eon.chris', 'loc_source') }}"
+  # eon_latitude:
+  #   friendly_name: "EON Latitude"
+  #   value_template: "{{ state_attr('eon.chris', 'latitude') }}"
+  # eon_longitude:
+  #   friendly_name: "EON Longitude"
+  #   value_template: "{{ state_attr('eon.chris', 'longitude') }}"
+  # eon_speed:
+  #   friendly_name: "EON GPS Speed"
+  #   value_template: "{{ state_attr('eon.chris', 'speed') }}"
+  # eon_altitude:
+  #   friendly_name: "EON Altitude"
+  #   value_template: "{{ state_attr('eon.chris', 'altitude') }}"
+  #   unit_of_measurement: 'meters'

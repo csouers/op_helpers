@@ -1,0 +1,10 @@
+platform: rest
+name: eon_thermal
+resource: !secret comma_eon_https_url
+json_attributes:
+  - result
+value_template: "{{value_json.id}}"
+method: POST
+headers:
+  "Authorization": !secret comma_eon_jwt
+payload: '{"method": "getMessage","params": {"service": "thermal","timeout": 5000},"jsonrpc": "2.0","id": 0}'
